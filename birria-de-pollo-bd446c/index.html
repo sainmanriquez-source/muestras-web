@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Muestra de página · Birria de Pollo</title>
+<style>
+  :root{
+    --crema:#FBF5EA; --papel:#FFFFFF; --cafe:#2B1A12; --texto:#4A3A30;
+    --teja:#B4472B; --teja-osc:#8F3520; --mostaza:#E0A23B; --linea:#E8DCC8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Helvetica Neue",Arial,sans-serif;background:var(--crema);color:var(--texto);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--cafe);line-height:1.15}
+  a{color:inherit}
+  .muestra{position:sticky;top:0;z-index:50;background:var(--cafe);color:#F6E9D4;font-size:13px;text-align:center;padding:9px 14px}
+  .muestra b{color:var(--mostaza)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* HERO */
+  .hero{position:relative;background:
+      radial-gradient(900px 420px at 85% -10%, rgba(224,162,59,.28), transparent 60%),
+      radial-gradient(700px 380px at -10% 110%, rgba(180,71,43,.22), transparent 60%),
+      var(--crema);
+    padding:64px 0 54px;border-bottom:1px solid var(--linea)}
+  .etiqueta{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teja);font-weight:700;margin-bottom:14px}
+  .hero h1{font-size:clamp(38px,7vw,68px);letter-spacing:-.02em;max-width:14ch}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);max-width:46ch;margin:18px 0 26px}
+  .chip{display:inline-flex;gap:8px;align-items:center;background:var(--papel);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font-size:14px;margin-bottom:26px}
+  .chip .estrella{color:var(--mostaza);font-size:16px}
+  .botones{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;padding:14px 22px;border-radius:12px;border:2px solid var(--teja);transition:transform .15s, background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primario{background:var(--teja);color:#fff}
+  .btn.primario:hover{background:var(--teja-osc)}
+  .btn.secundario{background:transparent;color:var(--teja)}
+  .btn.verde{background:#1F8F4E;border-color:#1F8F4E;color:#fff}
+
+  section{padding:56px 0}
+  section h2{font-size:clamp(28px,4.4vw,40px);margin-bottom:10px}
+  .sub{max-width:56ch;margin-bottom:28px}
+
+  /* GALERIA (espacios para las fotos del dueño) */
+  .galeria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:190px;gap:12px}
+  .foto{min-width:0;border-radius:16px;border:2px dashed #D9C6A6;background:
+      repeating-linear-gradient(45deg,#F4EAD6,#F4EAD6 12px,#F8F0E0 12px,#F8F0E0 24px);
+      display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;color:#9A8466;padding:10px}
+  .foto.grande{grid-column:span 2;grid-row:span 2}
+  @media (max-width:640px){
+    .galeria{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:130px}
+    .foto.grande{grid-column:span 2;grid-row:span 2}
+    .foto:last-child{grid-column:span 2}
+  }
+
+  .foto.con-img{border:0;padding:0;overflow:hidden;background:#EADFC8}
+  .foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .foto.ancho{grid-column:span 3}
+  @media (max-width:640px){.foto.ancho{grid-column:span 2}}
+  .nota{font-size:13px;color:#9A8466;margin-top:12px}
+  .nota:empty{display:none}
+  .carta{margin-top:22px;max-width:380px}
+  .carta img{width:100%;border-radius:16px;border:1px solid var(--linea);display:block}
+  .carta p{font-size:13px;color:#9A8466;margin-top:8px}
+
+  /* PLATOS */
+  .platos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .plato{background:var(--papel);border:1px solid var(--linea);border-radius:18px;padding:22px}
+  .plato h3{font-size:24px;margin-bottom:6px}
+  .plato .tag{display:inline-block;background:#FBE8C6;color:#7A5410;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .plato .precio{margin-top:10px;font-size:14px;color:#9A8466}
+
+  /* INFO */
+  .info{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start}
+  @media (max-width:820px){.info{grid-template-columns:1fr}}
+  .tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:18px;padding:24px}
+  .dato{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--linea)}
+  .dato:last-child{border-bottom:0}
+  .dato .ico{width:36px;height:36px;border-radius:10px;background:#F7E3D9;color:var(--teja);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+  .dato strong{display:block;color:var(--cafe)}
+  iframe{width:100%;height:380px;border:0;border-radius:18px;border:1px solid var(--linea)}
+
+  /* RESEÑAS */
+  .resenas{background:var(--cafe);color:#F6E9D4;border-radius:24px;padding:44px 28px;text-align:center}
+  .resenas h2{color:#fff}
+  .resenas .grande{font-family:Georgia,serif;font-size:72px;color:var(--mostaza);line-height:1}
+  .resenas .estrellas{color:var(--mostaza);font-size:26px;letter-spacing:4px;margin:6px 0 10px}
+  .resenas a.btn{margin-top:18px;background:transparent;color:#fff;border-color:#fff}
+
+  footer{padding:36px 0 60px;font-size:14px;color:#8B7660;text-align:center}
+  footer .cta{background:#FFF4DC;border:1px solid #F0D79B;border-radius:16px;padding:20px;max-width:640px;margin:0 auto 18px;color:#5A4318}
+  footer .cta b{color:var(--cafe)}
+</style>
+</head>
+<body>
+
+<div class="muestra"><b>MUESTRA</b> · Propuesta de diseño preparada por Saín Manríquez para Birria de Pollo · No es el sitio oficial del negocio</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="etiqueta">El Batán · Zapopan, Jalisco</span>
+    <h1>Birria de Pollo</h1>
+    <p class="lead">Birria de pollo y sopa de médula en el corazón de Zapopan.</p>
+    <div class="chip"><span class="estrella">★</span> <b>4.6</b> en Google · 783 reseñas</div>
+    <div class="botones">
+      <a class="btn primario" href="tel:+523336605554">📞 Llamar ahora</a>
+      <a class="btn verde" href="https://wa.me/523336605554">💬 WhatsApp</a>
+      <a class="btn secundario" href="https://www.google.com/maps/dir/?api=1&destination=Birria+de+Pollo+Carr.+a+Saltillo+62%2C+El+Bat%C3%A1n%2C+45190+Zapopan%2C+Jal." target="_blank" rel="noopener">📍 Cómo llegar</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Mira lo que te espera</h2>
+    <p class="sub">Cocina tradicional mexicana en El Batán. Aquí vienes por la birria de pollo y la sopa de médula, y te quedas por el ambiente y la atención.</p>
+    <div class="galeria">
+      <div class="foto grande con-img"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLdqSPRW5V5SgHiFq6lOri1ukZln9XIfj5MKtlzcBydJYOYcQG8Bj7d8uaTCwXZU4txg1mBRaTIgp4AwCxGsNyP_xpnKDntT3HLBDLU_vDqgYABQxKP-Foznznq2mOX37vYr1OSf=w1200" alt="Mesa servida con sopas, tortillas y salsas" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="foto  con-img"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLcPuWCIBw1lyAHQfP8fcvm7b-GkhPHbZTHVchs6uFstKwvYicLTbPL2FNeaCWu39HSx8qhpmy_AUFmBizcCC78Fe534g_lLZCRK6-1P5RsFR7DCQnS2aJzXgzBKfs2U0PTNgcwd=w1200" alt="Plato de birria con pan" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="foto  con-img"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLfmU9JiIMb9-ta_7EsRj68FxXdFVbu9T4wS9flBMzJVwmHvTIGBM_1ivTw8mm9nteMdz2guWJOqABZGfTNyLdoDp31HbCaXgKro4DKTtLCQVbEF_4mD2s-WWBQury76Emvbk723=w1200" alt="Fachada del restaurante" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="foto ancho con-img"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLfxcEKPYygrmu79nJXH_8_jzIzeml7XR6m_C_0SBuFkccWBsh1m2vvxFX-jWNCUFC2zQtmEVxeEXnGCpiJlZ9pvozMpjhP3t4rAS3VxSCCd6Lx24B2T_qGFqLiytnggOKUEw_03KQqYuIsB=w1200" alt="Interior del restaurante" loading="lazy" referrerpolicy="no-referrer"></div>
+    </div>
+    <p class="nota">Fotos del perfil público del negocio en Google Maps, solo como muestra. Se reemplazan por las que elija el dueño.</p>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <h2>Lo que no te puedes perder</h2>
+    <p class="sub">Platillos destacados en el perfil de Google del negocio. Los precios se confirman con el dueño.</p>
+    <div class="platos">
+      <div class="plato"><span class="tag">El favorito</span><h3>Birria de Pollo</h3><p>La especialidad de la casa, servida caliente con su caldo.</p><div class="precio">Precio: por confirmar</div></div>
+      <div class="plato"><span class="tag">Muy pedido</span><h3>Sopa de Médula</h3><p>Un clásico que los clientes mencionan una y otra vez.</p><div class="precio">Precio: por confirmar</div></div>
+    </div>
+    <div class="wrap"><div class="carta"><img src="https://lh3.googleusercontent.com/grass-cs/AABkmLeb0p8lTERte6VlkZeg_O1jVZFjgFxGzg3NRzJ06lvrzvqk-2blU4gBUCSKBHewUX_dhguo7L7QVBdaR5j1ecrjYb-69brtsvZtMxKOCU1l5qy8qp5zQNOcdyN1t-HJKXhMTBR4=w900" alt="Carta del restaurante" loading="lazy" referrerpolicy="no-referrer"><p>La carta del negocio, tal como aparece en su perfil de Google (puede estar desactualizada).</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap info">
+    <div class="tarjeta">
+      <h2 style="font-size:28px;margin-bottom:6px">Visítanos</h2>
+      <div class="dato"><div class="ico">📍</div><div><strong>Dirección</strong>Carr. a Saltillo 62, El Batán, 45190 Zapopan, Jal.</div></div>
+      <div class="dato"><div class="ico">📞</div><div><strong>Teléfono</strong><a href="tel:+523336605554">33 3660 5554</a></div></div>
+      <div class="dato"><div class="ico">🕒</div><div><strong>Horario</strong>Consulta el horario actualizado en Google Maps (por confirmar con el dueño)</div></div>
+      <div class="dato"><div class="ico">💲</div><div><strong>Precio aproximado</strong>$200 a $300 por persona</div></div>
+    </div>
+    <iframe title="Mapa de Birria de Pollo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Birria+de+Pollo+Carr.+a+Saltillo+62+El+Bat%C3%A1n+Zapopan&output=embed"></iframe>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="resenas">
+      <h2>Lo que dicen en Google</h2>
+      <div class="grande">4.6</div>
+      <div class="estrellas">★★★★★</div>
+      <p>783 reseñas de clientes</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Birria+de+Pollo+Carr.+a+Saltillo+62+El+Bat%C3%A1n+Zapopan" target="_blank" rel="noopener">Leer las reseñas en Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta"><b>¿Te gusta cómo quedaría?</b><br>Esta es una muestra hecha con la información pública de tu negocio. Si quieres que la dejemos funcionando con tus propias fotos, escríbeme por Instagram: <b>@sainmanriquez</b></div>
+    Muestra de diseño · Saín Manríquez · Esta página no está publicada para el público ni aparece en buscadores.
+  </div>
+</footer>
+
+</body>
+</html>
