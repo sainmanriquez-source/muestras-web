@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Muestra de página · Dentatec</title>
+<style>
+  :root{
+    --crema:#F2FAFB; --papel:#FFFFFF; --cafe:#12303A; --texto:#2D3E44;
+    --teja:#1AA3BD; --teja-osc:#0E7C92; --mostaza:#6CCBDC; --linea:#CFE8EE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Helvetica Neue",Arial,sans-serif;background:var(--crema);color:var(--texto);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--cafe);line-height:1.15}
+  a{color:inherit}
+  .muestra{position:sticky;top:0;z-index:50;background:var(--cafe);color:#EAF6F9;font-size:13px;text-align:center;padding:9px 14px}
+  .muestra b{color:var(--mostaza)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* HERO */
+  .hero{position:relative;background:
+      radial-gradient(900px 420px at 85% -10%, rgba(108,203,220,.30), transparent 60%),
+      radial-gradient(700px 380px at -10% 110%, rgba(26,163,189,.18), transparent 60%),
+      var(--crema);
+    padding:64px 0 54px;border-bottom:1px solid var(--linea)}
+  .etiqueta{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teja);font-weight:700;margin-bottom:14px}
+  .hero h1{font-size:clamp(38px,7vw,68px);letter-spacing:-.02em;max-width:14ch}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);max-width:46ch;margin:18px 0 26px}
+  .chip{display:inline-flex;gap:8px;align-items:center;background:var(--papel);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font-size:14px;margin-bottom:26px}
+  .chip .estrella{color:var(--mostaza);font-size:16px}
+  .botones{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;padding:14px 22px;border-radius:12px;border:2px solid var(--teja);transition:transform .15s, background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primario{background:var(--teja);color:#fff}
+  .btn.primario:hover{background:var(--teja-osc)}
+  .btn.secundario{background:transparent;color:var(--teja)}
+  .btn.verde{background:#1F8F4E;border-color:#1F8F4E;color:#fff}
+
+  section{padding:56px 0}
+  section h2{font-size:clamp(28px,4.4vw,40px);margin-bottom:10px}
+  .sub{max-width:56ch;margin-bottom:28px}
+
+  /* GALERIA (espacios para las fotos del dueño) */
+  .galeria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:190px;gap:12px}
+  .foto{min-width:0;border-radius:16px;border:2px dashed #BFDDE5;background:
+      repeating-linear-gradient(45deg,#E3F2F6,#E3F2F6 12px,#EBF6F9 12px,#EBF6F9 24px);
+      display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;color:#5B7078;padding:10px}
+  .foto.grande{grid-column:span 2;grid-row:span 2}
+  @media (max-width:640px){
+    .galeria{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:130px}
+    .foto.grande{grid-column:span 2;grid-row:span 2}
+    .foto:last-child{grid-column:span 2}
+  }
+
+  .foto.con-img{border:0;padding:0;overflow:hidden;background:#DDEEF3}
+  .foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .foto.ancho{grid-column:span 3}
+  @media (max-width:640px){.foto.ancho{grid-column:span 2}}
+  .nota{font-size:13px;color:#5B7078;margin-top:12px}
+  .nota:empty{display:none}
+  .testi{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:22px}
+  .testi blockquote{background:var(--papel);border:1px solid var(--linea);border-left:5px solid var(--mostaza);border-radius:14px;padding:18px 20px;font-family:Georgia,serif;font-size:18px;color:var(--cafe)}
+  .testi cite{display:block;font:13px "Helvetica Neue",Arial,sans-serif;color:#5B7078;margin-top:8px;font-style:normal}
+  .carta{margin-top:22px;max-width:380px}
+  .carta img{width:100%;border-radius:16px;border:1px solid var(--linea);display:block}
+  .carta p{font-size:13px;color:#5B7078;margin-top:8px}
+
+  /* PLATOS */
+  .platos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .plato{background:var(--papel);border:1px solid var(--linea);border-radius:18px;padding:22px}
+  .plato h3{font-size:24px;margin-bottom:6px}
+  .plato .tag{display:inline-block;background:#D5EEF4;color:#0E5566;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .plato .precio{margin-top:10px;font-size:14px;color:#5B7078}
+
+  /* INFO */
+  .info{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start}
+  @media (max-width:820px){.info{grid-template-columns:1fr}}
+  .tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:18px;padding:24px}
+  .dato{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--linea)}
+  .dato:last-child{border-bottom:0}
+  .dato .ico{width:36px;height:36px;border-radius:10px;background:#D5EEF4;color:var(--teja);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+  .dato strong{display:block;color:var(--cafe)}
+  iframe{width:100%;height:380px;border:0;border-radius:18px;border:1px solid var(--linea)}
+
+  /* RESEÑAS */
+  .resenas{background:var(--cafe);color:#EAF6F9;border-radius:24px;padding:44px 28px;text-align:center}
+  .resenas h2{color:#fff}
+  .resenas .grande{font-family:Georgia,serif;font-size:72px;color:var(--mostaza);line-height:1}
+  .resenas .estrellas{color:var(--mostaza);font-size:26px;letter-spacing:4px;margin:6px 0 10px}
+  .resenas a.btn{margin-top:18px;background:transparent;color:#fff;border-color:#fff}
+
+  footer{padding:36px 0 60px;font-size:14px;color:#5B7078;text-align:center}
+  footer .cta{background:#E4F4F8;border:1px solid #B6DDE7;border-radius:16px;padding:20px;max-width:640px;margin:0 auto 18px;color:#0E4A5A}
+  footer .cta b{color:var(--cafe)}
+
+  .nav{background:var(--papel);border-bottom:1px solid var(--linea);position:sticky;top:36px;z-index:40}
+  .nav .wrap{display:flex;gap:22px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+  .nav b{font-family:Georgia,serif;color:var(--cafe);font-size:18px}
+  .nav nav{display:flex;gap:18px;font-size:14px;flex-wrap:wrap}
+  .nav nav a{text-decoration:none;color:var(--texto)} .nav nav a:hover{color:var(--teja)}
+  .nav .btn{padding:8px 16px;font-size:14px}
+  .pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;counter-reset:p}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:18px;padding:22px;counter-increment:p}
+  .paso::before{content:counter(p);display:flex;width:36px;height:36px;border-radius:50%;background:var(--teja);color:#fff;font-weight:700;align-items:center;justify-content:center;margin-bottom:12px}
+  .paso h3{font-size:20px;margin-bottom:6px}
+  .bio{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;align-items:center}
+  @media (max-width:760px){.bio{grid-template-columns:1fr}}
+  .bio .retrato{border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#DDEEF3}
+  .bio .retrato img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .bio ul{margin:14px 0 20px 20px} .bio li{margin-bottom:6px}
+  .pend{background:#E4F4F8;border:1px dashed #6CCBDC;border-radius:10px;padding:8px 12px;font-size:13px;color:#0E4A5A;display:inline-block}
+  details{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:700;color:var(--cafe)}
+  details p{margin-top:10px}
+  .cta-final{background:var(--cafe);color:#EAF6F9;border-radius:24px;padding:44px 28px;text-align:center}
+  .cta-final h2{color:#fff;margin-bottom:10px} .cta-final .botones{justify-content:center;margin-top:20px}
+  .cta-final .btn.secundario{color:#fff;border-color:#fff}
+  .foto.ancho{grid-column:span 3}
+</style>
+</head>
+<body>
+
+<div class="muestra"><b>MUESTRA</b> · Propuesta de diseño preparada por Saín Manríquez Fotógrafo Profesional para Dentatec · No es el sitio oficial de la clínica</div>
+
+<div class="nav"><div class="wrap">
+  <b>Dentatec</b>
+  <nav><a href="#especialidades">Especialidades</a><a href="#doctora">Nosotros</a><a href="#opiniones">Opiniones</a><a href="#cita">Ubicación</a></nav>
+  <a class="btn verde" href="https://wa.me/528115945214">💬 Agendar por WhatsApp</a>
+</div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="etiqueta">Clínica dental · Distrito Tec, Monterrey</span>
+    <h1>Tu sonrisa en buenas manos, en Distrito Tec, Monterrey.</h1>
+    <p class="lead">Conoce la clínica y lo que dicen sus pacientes en Google.</p>
+    <div class="chip"><span class="estrella">★</span> <b>4.8</b> en Google · 22 reseñas</div>
+    <div class="botones">
+      <a class="btn verde" href="https://wa.me/528115945214">💬 Agendar por WhatsApp</a>
+      <a class="btn primario" href="tel:+528115945214">📞 Llamar ahora</a>
+      <a class="btn secundario" href="https://www.google.com/maps/dir/?api=1&destination=Dentatec+R%C3%ADo+P%C3%A1nuco+2220-A%2C+M%C3%A9xico%2C+Distrito+Tec%2C+64820+Monterrey%2C+N.L." target="_blank" rel="noopener">📍 Cómo llegar</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Así es tu primera cita</h2>
+    <p class="sub">Un camino claro, sin sorpresas. <span class="pend">Ejemplo: el equipo ajusta los pasos a su forma de trabajar</span></p>
+    <div class="pasos">
+      <div class="paso"><h3>Escríbenos</h3><p>Mándanos un mensaje por WhatsApp y cuéntanos qué te gustaría mejorar.</p></div>
+      <div class="paso"><h3>Elige tu horario</h3><p>Te confirmamos día y hora para tu valoración.</p></div>
+      <div class="paso"><h3>Conoce al doctor</h3><p>Revisión de tu caso con calma y sin presión.</p></div>
+      <div class="paso"><h3>Tu plan, explicado</h3><p>Te explicamos las opciones, los tiempos y los costos antes de empezar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="especialidades" style="padding-top:8px">
+  <div class="wrap">
+    <h2>Todo para cuidar tu sonrisa</h2>
+    <p class="sub">Servicios mencionados por sus pacientes en Google.</p>
+    <div class="platos">
+      <div class="plato"><span class="tag">Servicio</span><h3>Consulta y valoración</h3><p>Revisión inicial y plan de tratamiento a tu medida.</p></div>
+      <div class="plato"><span class="tag">Servicio</span><h3>Ortodoncia y brackets</h3><p>Corrige tu sonrisa con seguimiento cercano del doctor.</p></div>
+      <div class="plato"><span class="tag">Servicio</span><h3>Extracciones y tratamientos</h3><p>Atención rápida y cuidadosa para que tu recuperación sea pronta.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="doctora">
+  <div class="wrap bio">
+    <div class="retrato"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Tkiv8L-LWXmFfpKd2pr4-lEH6qXi3k2NUyuGVEjMOdaYMIWZMpZpIC0bTrFGGfAdBCCeH9TO8ys2wMsrrvT50iCK7NzAstB-1zhhb5CXvj-vp3J4PYh0vlP4VtMbrp8zcRgWlx_w=w1200" alt="Vitrina de Dentatec: ¿Quieres tener una bella sonrisa?" loading="lazy" referrerpolicy="no-referrer"></div>
+    <div>
+      <span class="etiqueta">Conócenos</span>
+      <h2>Una clínica dental cerca de ti</h2>
+      <p>Una clínica dental en Distrito Tec, Monterrey, con trato amable y seguimiento cercano, según lo que cuentan sus pacientes en Google.</p>
+      <ul>
+        <li>Ortodoncia y brackets</li>
+        <li>Extracciones y tratamientos dentales</li>
+        <li>4.8 en Google con 22 reseñas</li>
+      </ul>
+      <p class="pend">Texto de ejemplo: aquí irán el equipo, su formación y lo que la clínica quiera contar</p>
+      <p style="margin-top:18px"><a class="btn verde" href="https://wa.me/528115945214">💬 Agendar mi cita</a></p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Conoce la clínica</h2>
+    <p class="sub">Tu próxima visita empieza aquí.</p>
+    <div class="galeria">
+      <div class="foto grande con-img"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9Tjb3iakP6wgW3EMpGWWneT_-rAbmUgCS6KD7xncyYd92eVbqM1clpP0mSpXMoL9fKi5YWvKzoh-QOoH-aUT2BmZ71hjE90cCHSqI2Yid8HIjdqTaRkmSfb_3lcoU5DQSZRGAEx=w1200" alt="Letrero Dentatec: no duele ser rocker" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="foto con-img"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RiONDhU4zDtR-DK9Su4xCBS76CpJpgHFnXfWy-Eh8PNdCaEC2CgBfL-Suq6ZfB3CEPeyvbGZA7lwhPxU4_RIToz9ogXea7ge3_7VVPywhdePMYC5TnKFolNaZoTkDN4fQsmtL6YQ=w1200" alt="Letrero de horario de Dentatec" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="foto con-img"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RTIMUO13zdT7JpgtuxW_XCn9F12Cnzdn-FMNfYOpdkgk9U8LomWt-D5evKNkvGOODDK2hvPmJWlKjI1TSMjAqCsbowz4dDdDzs2tDgjGPqCnhBvimmMXAqzJBOlRQ61xDninQ=w1200" alt="Fachada de Dentatec" loading="lazy" referrerpolicy="no-referrer"></div>
+    </div>
+    <p class="nota">Fotos del perfil público del negocio en Google Maps, solo como muestra. Se reemplazan por las que elija el dueño.</p>
+  </div>
+</section>
+
+<section id="opiniones" style="padding-top:0">
+  <div class="wrap">
+    <div class="resenas">
+      <h2>Pacientes que ya sonríen distinto</h2>
+      <div class="grande">4.8</div>
+      <div class="estrellas">★★★★★</div>
+      <p>22 reseñas de pacientes en Google</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Dentatec+R%C3%ADo+P%C3%A1nuco+2220+Monterrey" target="_blank" rel="noopener">Leer las reseñas en Google Maps</a>
+    </div>
+    <div class="testi">
+      <blockquote>“Me gusta el buen trato que me dio cuando llegué al consultorio y me ayudó a corregir mi sonrisa con el tratamiento de ortodoncia.”<cite>Paciente en Google · reseña en Google</cite></blockquote>
+      <blockquote>“Excelente atención, fui por la extracción de una muela y fue muy rápido, nada doloroso y la recuperación fue pronta.”<cite>Paciente en Google · reseña en Google</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Lo que nos preguntan antes de la primera cita</h2>
+    <p class="sub"><span class="pend">Preguntas de ejemplo: la clínica confirma las respuestas</span></p>
+    <details><summary>¿Cuánto dura un tratamiento?</summary><p>Depende de cada caso. En la primera valoración te damos un estimado de tiempo.</p></details>
+    <details><summary>¿Atienden a niñas y niños?</summary><p>Confirma con el consultorio los rangos de edad que atienden.</p></details>
+    <details><summary>¿Cuánto cuesta?</summary><p>Tu plan se explica con costos antes de empezar. Escríbenos por WhatsApp para agendar tu valoración.</p></details>
+    <details><summary>¿Cómo agendo mi cita?</summary><p>Por WhatsApp o por teléfono, en los horarios de la clínica.</p></details>
+  </div>
+</section>
+
+<section id="cita" style="padding-top:0">
+  <div class="wrap info">
+    <div class="tarjeta">
+      <h2 style="font-size:28px;margin-bottom:6px">Ubicación y contacto</h2>
+      <div class="dato"><div class="ico">📍</div><div><strong>Dirección</strong>Río Pánuco 2220-A, México, Distrito Tec, 64820 Monterrey, N.L.</div></div>
+      <div class="dato"><div class="ico">📞</div><div><strong>Teléfono</strong><a href="tel:+528115945214">81 1594 5214</a></div></div>
+      <div class="dato"><div class="ico">🕒</div><div><strong>Horario</strong>Lunes a viernes 9:00 a.m.–1:00 p.m. y 3:00–7:00 p.m. · Sábado 9:00 a.m.–1:00 p.m. (según el letrero de la clínica; por confirmar).</div></div>
+    </div>
+    <iframe title="Mapa de Dentatec" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Dentatec+R%C3%ADo+P%C3%A1nuco+2220+Monterrey&output=embed"></iframe>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-final">
+      <h2>Tu nueva sonrisa empieza con una cita</h2>
+      <p>Escríbenos y agenda tu valoración.</p>
+      <div class="botones">
+        <a class="btn verde" href="https://wa.me/528115945214">💬 WhatsApp</a>
+        <a class="btn secundario" href="tel:+528115945214">📞 Llamar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta"><b>¿Te gusta cómo quedaría?</b><br>Esta es una muestra hecha con la información pública de la clínica. Si quieres que la dejemos funcionando con tus propias fotos, escríbeme por WhatsApp o Instagram: <b>@sainmanriquez</b></div>
+    Muestra de diseño · Saín Manríquez Fotógrafo Profesional · Esta página no está publicada para el público ni aparece en buscadores.
+  </div>
+</footer>
+
+</body>
+</html>
